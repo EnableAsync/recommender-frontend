@@ -9,7 +9,7 @@
                   cols="3"
                   align-self="center"
                 >
-                    <MiscRating color="#f4f7f7" director="test" name="Test" rating="4.3" year="2020"></MiscRating>
+                    <MiscRating color="#f4f7f7" director="test" name="Test" rating=4.3 year="2020"></MiscRating>
                 </v-col>
             </v-row>
         </v-container>
