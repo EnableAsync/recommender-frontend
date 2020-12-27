@@ -1,7 +1,7 @@
 <template>
     <v-app id="recommend">
         <v-container style="align-self: auto; text-align: center">
-            <h1 class="my-16">推荐系统</h1>
+            <h1 class="my-16">猜您喜欢</h1>
             <v-row>
                 <v-col
                   :key="i"
