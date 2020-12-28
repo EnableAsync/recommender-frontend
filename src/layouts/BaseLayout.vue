@@ -83,11 +83,9 @@ export default {
     searchText: "",
     choices: [],
     showSelect: true
-
-
   }),
   watch: {
-    searchText: 'inputHandle'
+    searchText: 'inputHandler'
   },
   methods: {
     itemClick(choice) {
@@ -95,7 +93,7 @@ export default {
       this.$refs.search.blur()
       // this.$router.push()
     },
-    inputHandle(text) {
+    inputHandler(text) {
       if (text.trim() !== '') {
         this.showSelect = true
         setTimeout(() => {
