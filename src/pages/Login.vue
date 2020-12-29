@@ -1,20 +1,22 @@
 <template>
-  <v-app id="inspire">
-<!--    <div style="display: flex; flex-direction: column; align-items: center;">-->
-<!--      <Notification></Notification>-->
-<!--    </div>-->
+  <v-app
+    id="inspire"
+  >
+    <!--    <div style="display: flex; flex-direction: column; align-items: center;">-->
+    <!--      <Notification></Notification>-->
+    <!--    </div>-->
 
     <v-app-bar
       app
-      color="blue darken-3"
-      dark
       clipped-left
+      color="white"
+      dark
     >
       <v-toolbar-title
-        style="width: 300px"
         class="ml-0 pl-4"
+        style="width: 300px"
       >
-        <span class="hidden-sm-and-down">推荐系统</span>
+        <span class="hidden-sm-and-down" style="color: black">电影推荐系统</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <!--      <v-btn-->
@@ -44,8 +46,8 @@
         >
           <v-col
             cols="12"
-            sm="8"
             md="4"
+            sm="8"
           >
             <v-card class="elevation-12">
               <v-toolbar
@@ -77,7 +79,7 @@
                 </v-form>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" @click="onLogin">登录</v-btn>
+                  <v-btn @click="onLogin" color="primary">登录</v-btn>
                 </v-card-actions>
               </v-card-text>
             </v-card>
