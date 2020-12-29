@@ -1,25 +1,39 @@
 <template>
   <v-app id="BaseLayout">
     <v-app-bar
-      app
-      color="white"
+        app
+        color="white"
     >
-      <!--            <v-toolbar-title class="align-self-center">电影推荐系统</v-toolbar-title>-->
+      <v-toolbar-title class="align-self-center">电影推荐系统</v-toolbar-title>
 
       <v-tabs
-        centered
-        class="ml-n9"
-        color="grey darken-1"
-        v-model="tab"
+          centered
+          class="ml-n9"
+          color="grey darken-1"
       >
         <v-tab
-          :key="i"
-          @click="$router.push(item.routerPath)"
-          v-for="(item, i) in items"
+            :key="i"
+            @click="$router.push(item.routerPath)"
+            v-for="(item, i) in items"
         >
-          {{item.name}}
+          {{ item.name }}
         </v-tab>
       </v-tabs>
+
+
+      <v-text-field
+          hide-details
+          label="Search"
+          append-icon="search"
+          v-model="searchText"
+          ref="search"
+          single-line
+          outlined
+          rounded
+          clearable
+          @keyup.enter="search"
+      ></v-text-field>
+
 
     </v-app-bar>
 
@@ -34,79 +48,95 @@
 </template>
 
 <script>
-  export default {
-    name: "BaseLayout",
-    data: () => ({
-      items: [
-        {
-          name: "近期热门",
-          routerPath: "/hot"
-        },
-        {
-          name: "排行榜",
-          routerPath: "/rank",
-          children: [
-            {
-              name: "test",
-              goto: '#test'
-            }
-          ]
-        },
-        {
-          name: "推荐电影",
-          routerPath: "/recommend"
-        },
-
-      ]
-    })
+export default {
+  name: "BaseLayout",
+  data: () => ({
+    items: [
+      {
+        name: "热门电影",
+        routerPath: "/hot"
+      },
+      {
+        name: "排行榜",
+        routerPath: "/rank",
+        children: [
+          {
+            name: "test",
+            goto: '#test'
+          }
+        ]
+      },
+      {
+        name: "推荐电影",
+        routerPath: "/recommend"
+      }
+    ],
+    searchText: "",
+    choices: [],
+    showSelect: true
+  }),
+  watch: {
+    searchText: 'inputHandler'
+  },
+  methods: {
+    search() {
+      this.$refs.search.blur()
+      console.log(this.searchText)
+      // this.$router.push()
+    }
   }
+}
 </script>
 
 <style scoped>
-  /* fade */
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.28s;
-  }
+/* fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
+}
 
-  .fade-enter,
-  .fade-leave-active {
-    opacity: 0;
-  }
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
 
-  /* fade-transform */
-  .fade-transform-leave-active,
-  .fade-transform-enter-active {
-    transition: all .2s;
-  }
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .2s;
+}
 
-  .fade-transform-enter {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
 
-  .fade-transform-leave-to {
-    opacity: 0;
-    transform: translateX(30px);
-  }
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
 
-  /* breadcrumb transition */
-  .breadcrumb-enter-active,
-  .breadcrumb-leave-active {
-    transition: all .5s;
-  }
+/* breadcrumb transition */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .5s;
+}
 
-  .breadcrumb-enter,
-  .breadcrumb-leave-active {
-    opacity: 0;
-    transform: translateX(20px);
-  }
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
 
-  .breadcrumb-move {
-    transition: all .5s;
-  }
+.breadcrumb-move {
+  transition: all .5s;
+}
 
-  .breadcrumb-leave-active {
-    position: absolute;
-  }
+.breadcrumb-leave-active {
+  position: absolute;
+}
+
+.border-list {
+  border: 1px solid #eee !important;
+}
 </style>
