@@ -11,7 +11,7 @@ export const constantRoutes = [
     {
         path: '/',
         component: BaseLayout,
-        redirect: 'hot',
+        redirect: 'login',
         children: [
             {
                 path: "/recommend",
@@ -27,7 +27,10 @@ export const constantRoutes = [
             }
         ]
     },
-
+    {
+        path: '/login',
+        component: () => import('../pages/Login')
+    }
 ];
 
 const router = new Router({
