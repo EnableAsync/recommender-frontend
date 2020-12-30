@@ -30,6 +30,10 @@ export const constantRoutes = [
     {
         path: '/login',
         component: () => import('../pages/Login')
+    },
+    {
+        path: '/register',
+        component: () => import('../pages/Register')
     }
 ];
 
