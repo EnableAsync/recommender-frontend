@@ -1,14 +1,15 @@
-import request from '@/utils/request'
+import {movieService} from '@/utils/request'
 
 
 /**
  * 获取近期热门电影
  * @returns {AxiosPromise}
  */
-export function getRecentlyHotMovies() {
-  return request({
-    url: '/movie/hot',
-    method: 'get'
+export function getRecentlyHotMovies(num) {
+  return movieService({
+    url: '/hot',
+    method: 'get',
+    params: num
   })
 }
 
@@ -16,10 +17,11 @@ export function getRecentlyHotMovies() {
  * 获取历史热门电影
  * @returns {AxiosPromise}
  */
-export function getHistoryHotMovies() {
-  return request({
-    url: '/movie/rate',
-    method: 'post',
+export function getHistoryHotMovies(num) {
+  return movieService({
+    url: '/rate',
+    method: 'get',
+    params: num
   })
 }
 
@@ -28,8 +30,8 @@ export function getHistoryHotMovies() {
  * @returns {AxiosPromise}
  */
 export function getWishMovies() {
-  return request({
-    url: '/movie/wish',
+  return movieService({
+    url: '/wish',
     method: 'get'
   })
 }
@@ -39,8 +41,8 @@ export function getWishMovies() {
  * @returns {AxiosPromise}
  */
 export function getRecommendedMovies() {
-  return request({
-    url: '/movie/guess',
+  return movieService({
+    url: '/guess',
     method: 'get'
   })
 }
@@ -51,7 +53,7 @@ export function getRecommendedMovies() {
  * @returns {AxiosPromise}
  */
 export function getSimilarMovies(data) {
-  return request({
+  return movieService({
     url: '/same',
     method: 'get',
     params: data
@@ -64,7 +66,7 @@ export function getSimilarMovies(data) {
  * @returns {*}
  */
 export function getMovieInfo(id) {
-  return request({
+  return movieService({
     url: '/info',
     method: 'get',
     param: id
@@ -77,7 +79,7 @@ export function getMovieInfo(id) {
  * @returns {*}
  */
 export function getSearchMovies(query) {
-  return request({
+  return movieService({
     url: '/search',
     method: 'get',
     param: query
@@ -86,14 +88,14 @@ export function getSearchMovies(query) {
 
 /**
  * 根据电影类别获取电影
- * @param genre
  * @returns {*}
+ * @param data
  */
-export function getGenresMovies(genre) {
-  return request({
+export function getGenresMovies(data) {
+  return movieService({
     url: '/genres',
     method: 'get',
-    param: genre
+    params: data
   })
 }
 
@@ -103,10 +105,10 @@ export function getGenresMovies(genre) {
  * @returns {*}
  */
 export function getMyRateMovies(username) {
-  return request({
+  return movieService({
     url: '/myrate',
     method: 'get',
-    param: username
+    params: username
   })
 }
 
@@ -119,10 +121,10 @@ export function getMyRateMovies(username) {
  * @returns {*}
  */
 export function rateToMovie(params) {
-  return request({
+  return movieService({
     url: '/myrate',
     method: 'get',
-    param: params
+    params: params
   })
 }
 
