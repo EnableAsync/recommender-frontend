@@ -90,7 +90,7 @@
         .then(res => {
           if (res.data.success){
             alert("登录成功！")
-            console.log(res.data.user)
+            this.$store.commit("setUsername",this.username)
             this.$router.push('/hot')
           }
         })
