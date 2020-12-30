@@ -38,6 +38,7 @@
 <script>
 import MiscRating from "../components/MiscRating";
 import {getRecentlyHotMovies,getHistoryHotMovies} from "@/api/movie"
+import {checkNew} from "@/api/user";
 import getMoviePoster from "../utils/get-movie-poster";
 
 
@@ -89,6 +90,13 @@ export default {
   },
   created() {
     this.getMovies(this.func.recentFunc,this.movieCnt)
+    checkNew({
+      username:this.$store.state.username
+    }).then(response => {
+      if (response.data.new){
+        console.log("请选择偏好信息")
+      }
+    })
   },
   components: {MiscRating}
 }
