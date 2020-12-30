@@ -2,10 +2,6 @@
   <v-app
     id="inspire"
   >
-    <!--    <div style="display: flex; flex-direction: column; align-items: center;">-->
-    <!--      <Notification></Notification>-->
-    <!--    </div>-->
-
     <v-app-bar
       app
       clipped-left
@@ -19,20 +15,6 @@
         <span class="hidden-sm-and-down" style="color: black">电影推荐系统</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <!--      <v-btn-->
-      <!--          icon-->
-      <!--          large-->
-      <!--      >-->
-      <!--        <v-avatar-->
-      <!--            size="32px"-->
-      <!--            item-->
-      <!--        >-->
-      <!--          <v-img-->
-      <!--              src="../assets/logo.svg"-->
-      <!--              alt="Vuetify"-->
-      <!--          ></v-img>-->
-      <!--        </v-avatar>-->
-      <!--      </v-btn>-->
     </v-app-bar>
 
     <v-main>
@@ -79,6 +61,7 @@
                 </v-form>
                 <v-card-actions>
                   <v-spacer></v-spacer>
+                  <v-btn @click="onRegister" color="primary">注册</v-btn>
                   <v-btn @click="onLogin" color="primary">登录</v-btn>
                 </v-card-actions>
               </v-card-text>
@@ -91,44 +74,34 @@
 </template>
 
 <script>
-  // import {login} from '../api/login'
-  // import md5 from 'js-md5';
-  // import qs from 'qs'
-  // import {notify} from "../components/notification";
-  // import Notification from "../components/notification/Notification";
-
-  // import router from "../routers";
+  import {login} from '@/api/user'
 
   export default {
-    // components: {Notification},
     data: () => ({
-      username: 'admin',
-      password: 'admin'
+      username: '',
+      password: ''
     }),
     methods: {
       onLogin() {
-        this.$router.push('/hot')
+        login({
+          username:this.username,
+          password:this.password
+        })
+        .then(res => {
+          if (res.data.success){
+            alert("登录成功！")
+            console.log(res.data.user)
+            this.$router.push('/hot')
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+
+      },
+      onRegister(){
+        this.$router.push('/register')
       }
-      // onLogin() {
-      //   login(qs.stringify({
-      //     username: this.username,
-      //     password: md5(this.password)
-      //   }))
-      //     .then(res => {
-      //       if (res.data.code === 0) {
-      //         notify('success', '登录成功');
-      //         this.$router.push('/register');
-      //         // this.close();
-      //       } else if (res.data.code === 10001) {
-      //         notify('error', '账号或密码错误');
-      //       } else {
-      //         notify('error', res.data.code + '错误');
-      //       }
-      //     })
-      //     .catch(reason => {
-      //       notify('error', '[登录失败]' + reason)
-      //     });
-      // }
     }
   }
 </script>
