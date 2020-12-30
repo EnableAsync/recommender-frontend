@@ -24,8 +24,9 @@
             :key="i"
             v-for="(movie,i) in movies"
         >
-          <MiscRating color="#f4f7f7" :director=movie.directors :name=movie.name :rating=movie.score
-                      :year=movie.shoot></MiscRating>
+          <MiscRating color="#f4f7f7"
+                      :movie="movie"
+          ></MiscRating>
         </v-col>
       </v-row>
 
@@ -37,6 +38,7 @@
 <script>
 import MiscRating from "../components/MiscRating";
 import {getRecentlyHotMovies,getHistoryHotMovies} from "@/api/movie"
+import getMoviePoster from "../utils/get-movie-poster";
 
 
 export default {
@@ -75,6 +77,7 @@ export default {
           .then(response => {
             this.movies = response.data.movies.map(movie => {
               movie.score = movie.score.toFixed(1)
+              movie.image = getMoviePoster(movie.mid)
               return movie
             })
           })

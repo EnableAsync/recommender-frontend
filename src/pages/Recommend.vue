@@ -6,15 +6,12 @@
                 <v-col
                   :key="index"
                   align-self="center"
-                  cols="3"
+                  cols="4"
                   v-for="(movie,index) in movies"
                 >
-                    <MiscRating :director="movie.directors"
-                                :name="movie.name"
-                                color="#f4f7f7"
-                                :rating="movie.score"
-                                :year="movie.shoot"
-                                :image="movie.image"
+                    <MiscRating
+                      :movie="movie"
+                      color="#f4f7f7"
                     ></MiscRating>
                 </v-col>
             </v-row>

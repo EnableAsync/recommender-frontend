@@ -34,6 +34,10 @@ export const constantRoutes = [
     {
         path: '/register',
         component: () => import('../pages/Register')
+    },
+    {
+        path: '/movie',
+        component: () => import("../pages/Movie")
     }
 ];
 

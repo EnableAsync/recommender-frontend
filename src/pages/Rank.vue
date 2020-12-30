@@ -17,13 +17,10 @@
 
       <h1 class="my-16">{{ curGenre }}</h1>
       <v-row>
-        <v-col :key="i" v-for="(movie,i) in movies">
+        <v-col :key="i" v-for="(movie,i) in movies" cols="4">
           <MiscRating
               color="#f4f7f7"
-              :director=movie.directors
-              :name=movie.name
-              :rating=movie.score
-              :year=movie.shoot
+              :movie="movie"
           ></MiscRating>
         </v-col>
       </v-row>
@@ -34,6 +31,7 @@
 <script>
 import MiscRating from "../components/MiscRating";
 import {getGenresMovies, getTopAllMovies} from "@/api/movie"
+import getMoviePoster from "../utils/get-movie-poster";
 
 export default {
   name: "Rank",
@@ -59,6 +57,7 @@ export default {
       }).then(response => {
         this.movies = response.data.movies.map(movie => {
           movie.score = movie.score.toFixed(1)
+          movie.image = getMoviePoster(movie.mid)
           return movie
         })
       }).catch(err => {
@@ -75,6 +74,7 @@ export default {
             .then(response => {
               this.movies = response.data.movies.map(movie => {
                 movie.score = movie.score.toFixed(1)
+                movie.image = getMoviePoster(movie.mid)
                 return movie
               })
             })
