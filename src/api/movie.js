@@ -40,10 +40,11 @@ export function getWishMovies() {
  * 获取推荐的电影
  * @returns {AxiosPromise}
  */
-export function getRecommendedMovies() {
+export function getRecommendedMovies(data) {
   return movieService({
     url: '/guess',
-    method: 'get'
+    method: 'get',
+    params: data
   })
 }
 
