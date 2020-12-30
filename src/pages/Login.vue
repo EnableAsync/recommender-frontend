@@ -48,6 +48,7 @@
                     prepend-icon="mdi-account"
                     type="text"
                     v-model="username"
+                    single-line
                   ></v-text-field>
 
                   <v-text-field
@@ -57,6 +58,7 @@
                     prepend-icon="mdi-lock"
                     type="password"
                     v-model="password"
+                    single-line
                   ></v-text-field>
                 </v-form>
                 <v-card-actions>
