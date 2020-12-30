@@ -21,7 +21,7 @@
                   class="shrink ma-2"
                   contain
                   height="125px"
-                  src="https://cdn.vuetifyjs.com/images/cards/halcyon.png"
+                  :src="image"
                   style="flex-basis: 125px"
                 ></v-img>
             </v-row>
@@ -53,7 +53,8 @@
             name: String,
             director: String,
             year: String,
-            color: String
+            color: String,
+            image: String,
         },
     }
 </script>
