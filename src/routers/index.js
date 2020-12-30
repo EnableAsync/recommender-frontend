@@ -24,6 +24,10 @@ export const constantRoutes = [
             {
                 path: "/hot",
                 component: Hot
+            },
+            {
+                path: '/movie/:mid',
+                component: () => import("../pages/Movie")
             }
         ]
     },
@@ -35,10 +39,6 @@ export const constantRoutes = [
         path: '/register',
         component: () => import('../pages/Register')
     },
-    {
-        path: '/movie',
-        component: () => import("../pages/Movie")
-    }
 ];
 
 const router = new Router({

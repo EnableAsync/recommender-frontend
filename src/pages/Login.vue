@@ -91,7 +91,7 @@
           if (res.data.success){
             alert("登录成功！")
             console.log(res.data.user)
-            this.$router.push('/hot')
+            this.$router.push('/hot').catch(()=>{});
           }
         })
         .catch(err => {
@@ -100,7 +100,7 @@
 
       },
       onRegister(){
-        this.$router.push('/register')
+        this.$router.push('/register').catch(()=>{});
       }
     }
   }

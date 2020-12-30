@@ -4,18 +4,18 @@
       class="mx-auto elevation-2"
       dark
       style="max-width: 400px; max-height: 300px;"
+      @click="getMovie(movie.mid)"
     >
         <v-row>
             <v-col>
                 <v-card-title
-                  @click="getMovie()"
                 >
                     <div style="color: #202124">
                         <div class="headline">
                             {{ movie.name }}
                         </div>
                         <div>{{movie.directors}}</div>
-                        <div>({{movie.shoot}})</div>
+<!--                        <div>({{movie.shoot}})</div>-->
                     </div>
                 </v-card-title>
             </v-col>
@@ -32,7 +32,7 @@
             给电影打分
             <v-spacer></v-spacer>
             <span class="black--text text--lighten-2 caption mr-2">
-        ({{ rating }})
+        ({{ movie.score }})
       </span>
             <v-rating
               background-color="#737373"
@@ -41,7 +41,7 @@
               half-increments
               hover
               size="18"
-              v-model="movie.rating"
+              v-model="movie.score"
             ></v-rating>
         </v-card-actions>
     </v-card>
@@ -56,7 +56,7 @@
         },
         methods: {
             getMovie(mid) {
-
+                this.$router.push(`/movie/${mid}`).catch(()=>{});
             }
         }
     }

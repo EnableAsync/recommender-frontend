@@ -90,7 +90,7 @@ export default {
       }).then(res => {
         if (res.data.success) {
           alert("注册成功")
-          this.$router.push('/login')
+          this.$router.push('/login').catch(()=>{});
 
         }
       }).catch(error => {

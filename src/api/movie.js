@@ -68,9 +68,8 @@ export function getSimilarMovies(data) {
  */
 export function getMovieInfo(id) {
   return movieService({
-    url: '/info',
+    url: `/info/${id}`,
     method: 'get',
-    params: id
   })
 }
 
