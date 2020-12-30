@@ -69,7 +69,7 @@ export function getMovieInfo(id) {
   return movieService({
     url: '/info',
     method: 'get',
-    param: id
+    params: id
   })
 }
 
@@ -82,7 +82,7 @@ export function getSearchMovies(query) {
   return movieService({
     url: '/search',
     method: 'get',
-    param: query
+    params: query
   })
 }
 
@@ -98,6 +98,15 @@ export function getGenresMovies(data) {
     params: data
   })
 }
+export function getTopAllMovies(data) {
+  return movieService({
+    url: '/topAll',
+    method: 'get',
+    params: data
+  })
+}
+
+
 
 /**
  * 获取用户评分过的电影

@@ -33,11 +33,14 @@
 
 <script>
 import MiscRating from "../components/MiscRating";
-import {getGenresMovies} from "@/api/movie"
+import {getGenresMovies, getTopAllMovies} from "@/api/movie"
 
 export default {
   name: "Rank",
   components: {MiscRating},
+  created() {
+    this.getTopMovies(this.movieCnt)
+  },
   data: () => ({
     genres: ['All', 'Western', 'War', 'Comedy', 'Crime', 'Music', 'Action', 'Fantasy', 'Romance', 'Mystery', 'Animation', 'Adventure', 'Drama', 'Documentary', 'Horror', 'Thriller'],
     curGenre: 'All',
@@ -47,26 +50,40 @@ export default {
       score: 5.0,
       shoot: ''
     }],
-    movieCnt: 9
+    movieCnt: 30
   }),
   methods: {
+    getTopMovies(num){
+      getTopAllMovies({
+        num: num
+      }).then(response => {
+        this.movies = response.data.movies.map(movie => {
+          movie.score = movie.score.toFixed(1)
+          return movie
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     onGenreSearch(genre) {
       this.curGenre = genre
       if (genre !== "All") {
         getGenresMovies({
-              category: genre,
-              num: this.movieCnt
-            }
-        )
+          category: genre,
+          num: this.movieCnt
+        })
             .then(response => {
               this.movies = response.data.movies.map(movie => {
                 movie.score = movie.score.toFixed(1)
                 return movie
               })
-            }).catch(error => {
-              console.log(error)
-            }
-        )
+            })
+            .catch(error => {
+                  console.log(error)
+                }
+            )
+      } else {
+        this.getTopMovies(this.movieCnt)
       }
     }
   }
