@@ -8,45 +8,22 @@
       >
         <v-chip
             :key="index"
-            v-for="(tag,index) in ranks.ranks"
+            v-for="(genre,index) in genres"
+            @click="onGenreSearch(genre)"
         >
-          {{ tag.genre }}
+          {{ genre }}
         </v-chip>
       </v-chip-group>
 
-      <h1 class="my-16">排行榜</h1>
+      <h1 class="my-16">{{ curGenre }}</h1>
       <v-row>
-        <v-col :key="i" v-for="i in 3">
+        <v-col :key="i" v-for="(movie,i) in movies">
           <MiscRating
               color="#f4f7f7"
-              director="test"
-              name="Test"
-              rating=4.3
-              year="2020"
-          ></MiscRating>
-        </v-col>
-      </v-row>
-      <h1 class="my-16">排行榜</h1>
-      <v-row>
-        <v-col :key="i" v-for="i in 3">
-          <MiscRating
-              color="#f4f7f7"
-              director="test"
-              name="Test"
-              rating=4.3
-              year="2020"
-          ></MiscRating>
-        </v-col>
-      </v-row>
-      <h1 class="my-16">排行榜</h1>
-      <v-row>
-        <v-col :key="i" v-for="i in 3">
-          <MiscRating
-              color="#f4f7f7"
-              director="test"
-              name="Test"
-              rating=4.3
-              year="2020"
+              :director=movie.directors
+              :name=movie.name
+              :rating=movie.score
+              :year=movie.shoot
           ></MiscRating>
         </v-col>
       </v-row>
@@ -56,42 +33,43 @@
 
 <script>
 import MiscRating from "../components/MiscRating";
+import {getGenresMovies} from "@/api/movie"
 
 export default {
   name: "Rank",
   components: {MiscRating},
   data: () => ({
-    ranks:
-        {
-          "code": 0,
-          "ranks": [
-            {
-              "genre": "drama",
-              "moves": [
-                {
-                  "mid": 1,
-                  "name": "name",
-                  "director": "director",
-                  "shoot": 2015,
-                  "rating": 4.0
-                }
-              ]
-            },
-            {
-              "genre": "action",
-              "moves": [
-                {
-                  "mid": 1,
-                  "name": "name",
-                  "director": "director",
-                  "shoot": 2015,
-                  "rating": 4.0
-                }
-              ]
-            }
-          ]
-        },
+    genres: ['All', 'Western', 'War', 'Comedy', 'Crime', 'Music', 'Action', 'Fantasy', 'Romance', 'Mystery', 'Animation', 'Adventure', 'Drama', 'Documentary', 'Horror', 'Thriller'],
+    curGenre: 'All',
+    movies: [{
+      name: '',
+      directors: '',
+      score: 5.0,
+      shoot: ''
+    }],
+    movieCnt: 9
   }),
+  methods: {
+    onGenreSearch(genre) {
+      this.curGenre = genre
+      if (genre !== "All") {
+        getGenresMovies({
+              category: genre,
+              num: this.movieCnt
+            }
+        )
+            .then(response => {
+              this.movies = response.data.movies.map(movie => {
+                movie.score = movie.score.toFixed(1)
+                return movie
+              })
+            }).catch(error => {
+              console.log(error)
+            }
+        )
+      }
+    }
+  }
 };
 </script>
 
