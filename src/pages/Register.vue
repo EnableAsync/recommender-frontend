@@ -91,7 +91,8 @@ export default {
         if (res.data.success) {
           alert("注册成功")
           this.$router.push('/login').catch(()=>{});
-
+        }else {
+          alert(res.data.message)
         }
       }).catch(error => {
         console.log(error)

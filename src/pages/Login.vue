@@ -92,6 +92,8 @@
             alert("登录成功！")
             this.$store.commit("setUsername",this.username)
             this.$router.push('/hot')
+          }else{
+            alert("账号或密码错误")
           }
         })
         .catch(err => {
