@@ -50,14 +50,17 @@ export function getRecommendedMovies(data) {
 
 /**
  * 获取电影详请页面相似的电影集合
- * @param data
+ * id:电影id
+ * num:相似电影的数量
  * @returns {AxiosPromise}
+ * @param id
+ * @param num
  */
-export function getSimilarMovies(data) {
+export function getSimilarMovies(id,num) {
   return movieService({
-    url: '/same',
+    url: `/same/${id}`,
     method: 'get',
-    params: data
+    params: num
   })
 }
 
