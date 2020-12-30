@@ -45,3 +45,11 @@ export function addPrefGenres(params) {
         params: params
     })
 }
+
+export function checkNew(username) {
+    return userService({
+        url: '/info',
+        method: 'get',
+        params: username
+    })
+}

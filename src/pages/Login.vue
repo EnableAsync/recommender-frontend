@@ -90,8 +90,8 @@
         .then(res => {
           if (res.data.success){
             alert("登录成功！")
-            console.log(res.data.user)
-            this.$router.push('/hot').catch(()=>{});
+            this.$store.commit("setUsername",this.username)
+            this.$router.push('/hot')
           }
         })
         .catch(err => {
@@ -100,7 +100,7 @@
 
       },
       onRegister(){
-        this.$router.push('/register').catch(()=>{});
+        this.$router.push('/register')
       }
     }
   }
