@@ -52,7 +52,6 @@
 
       <h1 class="my-16">相似电影</h1>
 
-      <v-btn depressed small color="PRIMARY" @click="showSimilarMovies">see console</v-btn>
       <v-row>
         <v-col
             :key="i"
@@ -71,18 +70,16 @@
 <script>
 import {getMovieInfo, getSimilarMovies} from "@/api/movie";
 import getMoviePoster from "../utils/get-movie-poster";
+import MiscRating from "@/components/MiscRating";
 
 export default {
   name: "Movie",
+  components: {MiscRating},
   data: () => ({
     movie: {},
     similarMovies: []
   }),
-  methods: {
-    showSimilarMovies(){
-      console.log(this.similarMovies)
-    }
-  },
+  methods: {},
   created() {
     getMovieInfo(this.$route.params.mid)
         .then(res => {
