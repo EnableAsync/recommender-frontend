@@ -37,7 +37,6 @@
       </span>
         <v-rating
             background-color="#737373"
-
             color="yellow accent-4"
             dense
             half-increments
@@ -53,12 +52,10 @@
 
       <h1 class="my-16">相似电影</h1>
 
-<!--      <v-btn depressed small color="PRIMARY" @click="showSimilarMovies">see console</v-btn>-->
       <v-row>
         <v-col
             :key="i"
             v-for="(movie,i) in similarMovies"
-            cols="4"
         >
           <MiscRating color="#f4f7f7"
                       :movie="movie"></MiscRating>
@@ -73,7 +70,7 @@
 <script>
 import {getMovieInfo, getSimilarMovies} from "@/api/movie";
 import getMoviePoster from "../utils/get-movie-poster";
-import MiscRating from "../components/MiscRating";
+import MiscRating from "@/components/MiscRating";
 
 export default {
   name: "Movie",
@@ -82,11 +79,7 @@ export default {
     movie: {},
     similarMovies: []
   }),
-  methods: {
-    showSimilarMovies(){
-      console.log(this.similarMovies)
-    }
-  },
+  methods: {},
   created() {
     getMovieInfo(this.$route.params.mid)
         .then(res => {

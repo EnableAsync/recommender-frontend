@@ -21,19 +21,38 @@
       </v-tabs>
 
 
+      <!--      <v-text-field-->
+      <!--          hide-details-->
+      <!--          label="Search"-->
+      <!--          append-icon="search"-->
+      <!--          v-model="searchText"-->
+      <!--          ref="search"-->
+      <!--          single-line-->
+      <!--          outlined-->
+      <!--          rounded-->
+      <!--          clearable-->
+      <!--          @keyup.enter="search"-->
+      <!--      ></v-text-field>-->
+
       <v-text-field
+          class="mx-2"
+          flat
           hide-details
           label="Search"
           append-icon="search"
           v-model="searchText"
-          ref="search"
-          single-line
-          outlined
-          rounded
           clearable
-          @keyup.enter="search"
+          outlined
+          single-line
+          dense
+
       ></v-text-field>
 
+
+      <v-btn class="ma-2" color=" darken-2" dark @click="logout">
+        <v-icon dark left>home</v-icon>
+
+      </v-btn>
 
 
     </v-app-bar>
@@ -82,8 +101,11 @@ export default {
   methods: {
     search() {
       this.$refs.search.blur()
-      console.log(this.searchText)
-      // this.$router.push()
+      console.log(this.searchText)// this.$router.push()
+    },
+    logout() {
+      this.$store.commit("setUsername", "")
+      this.$router.push("/")
     }
   }
 }
