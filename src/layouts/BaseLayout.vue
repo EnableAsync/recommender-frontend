@@ -67,7 +67,7 @@ export default {
         ]
       },
       {
-        name: "推荐电影",
+        name: "猜你喜欢",
         routerPath: "/recommend"
       }
     ],
