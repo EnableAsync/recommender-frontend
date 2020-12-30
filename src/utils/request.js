@@ -1,10 +1,14 @@
 import axios from 'axios'
 
 
-const service = axios.create({
-  baseURL: 'http://localhost:8080/recommender/rest',
+const userService = axios.create({
+  baseURL: 'http://localhost:8088/rest/users',
+  timeout: 5000
+})
+const movieService = axios.create({
+  baseURL: 'http://localhost:8088/rest/movie',
   timeout: 5000
 })
 
 
-export default service
+export  {userService,movieService}

@@ -1,4 +1,4 @@
-import request from "@/utils/request";
+import {userService} from "@/utils/request";
 
 /**
  * 登录
@@ -8,7 +8,7 @@ import request from "@/utils/request";
  * @returns {AxiosPromise}
  */
 export function login(params) {
-    return request({
+    return userService({
         url: '/login',
         method: 'get',
         params: params
@@ -23,7 +23,7 @@ export function login(params) {
  * @returns {AxiosPromise}
  */
 export function register(params) {
-    return request({
+    return userService({
         url: '/register',
         method: 'get',
         params: params
@@ -39,7 +39,7 @@ export function register(params) {
  * @returns {AxiosPromise}
  */
 export function addPrefGenres(params) {
-    return request({
+    return userService({
         url: '/pref',
         method: 'get',
         params: params
