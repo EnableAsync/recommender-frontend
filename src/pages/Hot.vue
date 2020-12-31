@@ -21,6 +21,7 @@
 
       <v-row>
         <v-col
+            cols="4"
             :key="i"
             v-for="(movie,i) in movies"
         >
