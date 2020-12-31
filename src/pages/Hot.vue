@@ -24,7 +24,6 @@
             cols="4"
             :key="i"
             v-for="(movie,i) in movies"
-            cols="4"
         >
           <MiscRating color="#f4f7f7"
                       :movie="movie"
