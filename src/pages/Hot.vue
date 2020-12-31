@@ -110,9 +110,7 @@ export default {
               return movie
             })
           })
-          .catch(error => {
-            console.log(error)
-          })
+          .catch()
     },
     addPref() {
       this.dialog = false
