@@ -48,7 +48,7 @@ export default {
       score: 5.0,
       shoot: ''
     }],
-    movieCnt: 30
+    movieCnt: 9
   }),
   methods: {
     getTopMovies(num){

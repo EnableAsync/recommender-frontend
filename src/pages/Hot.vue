@@ -51,7 +51,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="dialog = false">取消</v-btn>
+<!--          <v-btn color="green darken-1" text @click="dialog = false">取消</v-btn>-->
           <v-btn color="green darken-1" text @click="addPref">确认</v-btn>
         </v-card-actions>
       </v-card>

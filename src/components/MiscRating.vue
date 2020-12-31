@@ -11,7 +11,7 @@
                       @click="getMovie(movie.mid)"
                     >
                         <div style="color: #202124">
-                            <div class="headline">
+                            <div class="headline" style="max-height: 200px">
                                 {{ movie.name }}
                             </div>
                             <div>{{movie.directors}}</div>

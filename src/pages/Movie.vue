@@ -47,7 +47,7 @@
             half-increments
             hover
             size="18"
-            :number="movie.score"
+            v-model="movie.score"
         ></v-rating>
       </v-card-actions>
     </v-card>

@@ -4,7 +4,7 @@
         app
         color="white"
     >
-      <v-toolbar-title class="align-self-center">电影推荐系统</v-toolbar-title>
+      <v-toolbar-title class="align-self-center" style="width: 200px; margin-right: 180px">电影推荐系统</v-toolbar-title>
 
       <v-tabs
           centered
@@ -49,8 +49,8 @@
       ></v-text-field>
 
 
-      <v-btn class="ma-2" color=" darken-2" dark @click="logout">
-        <v-icon dark left>home</v-icon>
+      <v-btn class="ma-2" color="darken-2" dark @click="logout">
+        <v-icon dark>home</v-icon>
 
       </v-btn>
 
