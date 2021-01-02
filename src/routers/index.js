@@ -28,6 +28,10 @@ export const constantRoutes = [
             {
                 path: '/movie/:mid',
                 component: () => import("../pages/Movie")
+            },
+            {
+                path: '/search',
+                component: () => import('../pages/Search')
             }
         ]
     },

@@ -85,7 +85,7 @@ export function getSearchMovies(query) {
     return movieService({
         url: '/search',
         method: 'get',
-        params: query
+        params: {query:query}
     })
 }
 
