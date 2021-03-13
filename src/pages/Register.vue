@@ -89,10 +89,11 @@ export default {
         password: this.password
       }).then(res => {
         if (res.data.success) {
-          alert("注册成功")
-          this.$router.push('/login').catch(()=>{});
-        }else {
-          alert(res.data.message)
+          this.$store.commit('showTips', {text: "注册成功"})
+          this.$router.push('/login').catch(() => {
+          });
+        } else {
+          this.$store.commit('showTips', {text: res.data.message, color: 'red'})
         }
       }).catch(error => {
         console.log(error)
