@@ -9,6 +9,7 @@
             cols="4"
             v-for="(movie,index) in movies"
         >
+
           <MiscRating
               :color="movie.color"
               :father-method="getNewRecs"
@@ -45,10 +46,14 @@ export default {
       if (username == null || username === '') {
         username = "1@qq.com"
       }
-      let count = 9
+      let count = 5
       getRecommendedMovies({username: username, num: count})
           .then(res => {
             this.movies = res.data.movies
+            this.movies.map(movie => {
+              movie.color = "#f4f7f7"
+              return movie
+            })
           }).catch(error => {
         console.log(error)
       })
@@ -71,6 +76,11 @@ export default {
             console.log(rres.data)
             let index = this.movies.indexOf(movie)
             let recs = rres.data.movies
+            recs.map(movie => {
+              movie.color = "#9575cd"
+              return movie
+            })
+            console.log(rres)
             recs.forEach(m => this.movies.splice(index + 1, 0, m))
 
             // this.movies.splice(index, recs)

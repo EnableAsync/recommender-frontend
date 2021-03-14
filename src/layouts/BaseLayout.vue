@@ -47,7 +47,7 @@
     <v-main style="width: 1280px; margin: 20px auto;">
       <keep-alive>
         <transition mode="out-in" name="fade-transform">
-          <router-view/>
+          <router-view :key="$route.fullPath"/>
         </transition>
       </keep-alive>
     </v-main>

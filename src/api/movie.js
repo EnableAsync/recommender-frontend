@@ -21,8 +21,8 @@ async function transformMovies(response) {
 async function transformMovie(response) {
     const result = await response
     // TODO 应检测请求是否成功，这里先省略
-    result.data.score = Number(result.data.score.toFixed(1))
-    result.data.image = getMoviePoster(result.data.mid)
+    result.data.movie.score = Number(result.data.movie.score.toFixed(1))
+    result.data.movie.image = getMoviePoster(result.data.movie.mid)
     return result
 }
 

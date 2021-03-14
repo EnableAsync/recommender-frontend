@@ -14,8 +14,7 @@
                  style="text-align: left; height: 120px; overflow: hidden;">
               {{ movie.name }}
             </div>
-            <div style="margin-top: 5px; text-align: left;">{{ movie.directors }}</div>
-            <!--                        <div>({{movie.shoot}})</div>-->
+            <div style="margin-top: 5px; text-align: left; height: 48px; font-size: 1rem; overflow: hidden;line-height: 1.5rem">{{ movie.directors }}</div>
           </div>
         </v-card-title>
       </v-col>

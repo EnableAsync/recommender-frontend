@@ -4,7 +4,7 @@ let userService, movieService
 
 const response = data => ({data})
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'development') {
     userService = async function ({url}) {
         switch (url) {
             case '/register':
