@@ -31,7 +31,6 @@
 <script>
 import MiscRating from "../components/MiscRating";
 import {getGenresMovies, getTopAllMovies} from "@/api/movie"
-import getMoviePoster from "../utils/get-movie-poster";
 
 export default {
   name: "Rank",
@@ -55,11 +54,7 @@ export default {
       getTopAllMovies({
         num: num
       }).then(response => {
-        this.movies = response.data.movies.map(movie => {
-          movie.score = movie.score.toFixed(1)
-          movie.image = getMoviePoster(movie.mid)
-          return movie
-        })
+        this.movies = response.data.movies
       }).catch(err => {
         console.log(err)
       })
@@ -72,11 +67,7 @@ export default {
           num: this.movieCnt
         })
             .then(response => {
-              this.movies = response.data.movies.map(movie => {
-                movie.score = movie.score.toFixed(1)
-                movie.image = getMoviePoster(movie.mid)
-                return movie
-              })
+              this.movies = response.data.movies
             })
             .catch(error => {
                   console.log(error)

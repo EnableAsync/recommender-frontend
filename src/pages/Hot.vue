@@ -36,22 +36,15 @@
     <v-dialog v-model="dialog" persistent max-width="550">
       <v-card>
         <v-card-title>请选择你感兴趣的电影类别</v-card-title>
-        <v-divider></v-divider>
-        <v-container fluid>
-          <v-row>
-            <v-checkbox
-                :key="index"
-                v-for="(genre,index) in genres"
-                v-model="selected" :label=genre :value=genre
-            ></v-checkbox>
-          </v-row>
-
-
+        <v-container class="genre-selector">
+          <v-checkbox
+              :key="index"
+              v-for="(genre,index) in genres"
+              v-model="selected" :label=genre :value=genre
+          ></v-checkbox>
         </v-container>
-        <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-<!--          <v-btn color="green darken-1" text @click="dialog = false">取消</v-btn>-->
           <v-btn color="green darken-1" text @click="addPref">确认</v-btn>
         </v-card-actions>
       </v-card>
@@ -62,9 +55,8 @@
 
 <script>
 import MiscRating from "../components/MiscRating";
-import {getRecentlyHotMovies, getHistoryHotMovies} from "@/api/movie"
-import {checkNew, addPrefGenres} from "@/api/user";
-import getMoviePoster from "../utils/get-movie-poster";
+import {getHistoryHotMovies, getRecentlyHotMovies} from "@/api/movie"
+import {addPrefGenres, checkNew} from "@/api/user";
 
 
 export default {
@@ -104,11 +96,7 @@ export default {
       func({num: num}
       )
           .then(response => {
-            this.movies = response.data.movies.map(movie => {
-              movie.score = movie.score.toFixed(1)
-              movie.image = getMoviePoster(movie.mid)
-              return movie
-            })
+            this.movies = response.data.movies
           })
           .catch()
     },
@@ -119,10 +107,10 @@ export default {
         genres: this.preference
       }).then(response => {
         if (response.data.success) {
-          alert("添加偏好成功")
+          this.$store.commit('showTips', {text: "添加偏好成功"})
         }
       }).catch(error => {
-        console.log(error)
+        this.$store.commit('showTips', {text: error, color: 'red'})
       })
     }
   },
@@ -156,6 +144,16 @@ export default {
 </script>
 
 <style scoped>
+.genre-selector {
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
+.genre-selector > div {
+  width: 33%;
+}
 
 </style>

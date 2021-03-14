@@ -1,3 +1,3 @@
 export default function getMoviePoster(mid) {
-    return `http://localhost:8088/images/${mid}/poster.jpg`
+    return `http://192.168.0.4:8888/images/${mid}/poster.jpg`
 }

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-
+    <h1 class="my-16">{{ movie.name }}</h1>
     <v-card
         width="80%"
         color="#f4f7f7"
@@ -12,12 +12,12 @@
           <v-card-title
           >
             <div style="color: #202124">
-              <div class="headline">
-                {{ movie.name }}
-              </div>
+              <!--              <div class="headline">-->
+              <!--            {{ movie.name }}    -->
+              <!--              </div>-->
               <div>导演：{{ movie.directors }}</div>
-              <div>主演：{{primaryActors}}</div>
-              <div>类型：{{movie.genres}}</div>
+              <div>主演：{{ primaryActors }}</div>
+              <div>类型：{{ movie.genres }}</div>
               <div>语言: {{ movie.language }}</div>
               <div>片长: {{ movie.timelong }}</div>
               <div>上映日期：{{ movie.shoot }}</div>
@@ -35,7 +35,6 @@
       </v-row>
       <v-divider dark></v-divider>
       <v-card-actions class="pa-4" style="color: #202124">
-        给电影打分
         <v-spacer></v-spacer>
         <span class="black--text text--lighten-2 caption mr-2">
         ({{ movie.score }})
@@ -73,7 +72,6 @@
 
 <script>
 import {getMovieInfo, getSimilarMovies} from "@/api/movie";
-import getMoviePoster from "../utils/get-movie-poster";
 import MiscRating from "@/components/MiscRating";
 
 export default {
@@ -81,9 +79,9 @@ export default {
   components: {MiscRating},
   data: () => ({
     movie: {
-      timelong:'',
-      descri:'',
-      actors:''
+      timelong: '',
+      descri: '',
+      actors: ''
     },
     similarMovies: []
   }),
@@ -92,8 +90,6 @@ export default {
     getMovieInfo(this.$route.params.mid)
         .then(res => {
           this.movie = res.data.movie
-          console.log(this.movie)
-          this.movie.image = getMoviePoster(this.movie.mid)
         }).catch(err => console.log(err))
   },
 
@@ -102,11 +98,7 @@ export default {
       this.$nextTick(() => {
         getSimilarMovies(this.movie.mid, {num: 9})
             .then(response => {
-              this.similarMovies = response.data.movies.map(movie => {
-                movie.score = movie.score.toFixed(1)
-                movie.image = getMoviePoster(movie.mid)
-                return movie
-              })
+              this.similarMovies = response.data.movies
             })
             .catch(error => {
               console.log(error)
@@ -114,17 +106,17 @@ export default {
       })
     }
   },
-  computed:{
-    primaryActors(){
+  computed: {
+    primaryActors() {
       let actors = this.movie.actors.split("|")
       let primary = ""
-      for(let i = 0;i < actors.length;i ++){
-        if (i === 3){
+      for (let i = 0; i < actors.length; i++) {
+        if (i === 3) {
           break
         }
-        primary +=actors[i] + " | "
+        primary += actors[i] + " | "
       }
-      return primary.substr(0,primary.length - 2)
+      return primary.substr(0, primary.length - 2)
     }
   }
 }
